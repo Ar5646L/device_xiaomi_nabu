@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2018-2021 ArrowOS
+# Copyright (C) 2022 LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
@@ -11,17 +11,11 @@ NABU_PREBUILT := device/xiaomi/nabu-prebuilt
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
-# Installs gsi keys into ramdisk, to boot a GSI with verified boot.
-$(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
-
 # Virtual A/B
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
 # Enable Dalvik
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
-
-# Lawnchair
-$(call inherit-product, packages/apps/Lawnchair/lawnchair.mk)
 
 # AAPT
 # Device uses high-density artwork where available
@@ -64,8 +58,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/bluetooth/audio/config/sysbta_audio_policy_configuration.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sysbta_audio_policy_configuration.xml
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 2400
-TARGET_SCREEN_WIDTH := 1080
+TARGET_SCREEN_HEIGHT := 2560
+TARGET_SCREEN_WIDTH := 1600
 
 # Boot control
 PRODUCT_PACKAGES += \

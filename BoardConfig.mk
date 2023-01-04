@@ -1,18 +1,22 @@
 #
-# Copyright (C) 2018-2021 ArrowOS
+# Copyright (C) 2022 LineageOS Project
 #
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Inherit from the proprietary version
--include vendor/xiaomi/nabu/BoardConfigVendor.mk
+BOARD_VENDOR := xiaomi
 
 DEVICE_PATH := device/xiaomi/nabu
-NABU_PREBUILT := device/xiaomi/nabu-prebuilt
 
 BUILD_BROKEN_DUP_RULES := true
 BUILD_BROKEN_ELF_PREBUILT_PRODUCT_COPY_FILES := true
 BUILD_BROKEN_MISSING_REQUIRED_MODULES := true
+
+# Inherit from the proprietary version
+include vendor/xiaomi/nabu/BoardConfigVendor.mk
+
+DEVICE_PATH := device/xiaomi/nabu
+NABU_PREBUILT := device/xiaomi/nabu-prebuilt
 
 # A/B
 AB_OTA_UPDATER := true
@@ -37,7 +41,7 @@ TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a76
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_ARCH_VARIANT := armv8-2a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a76
@@ -61,11 +65,12 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_KERNEL_SEPARATED_DTBO := true
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-TARGET_KERNEL_ADDITIONAL_FLAGS := DTC_EXT=$(shell pwd)/prebuilts/misc/$(HOST_OS)-x86/dtc/dtc
 TARGET_KERNEL_CONFIG := nabu_user_defconfig
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_SOURCE := kernel/xiaomi/nabu
-TARGET_KERNEL_CLANG_VERSION := r416183b
+TARGET_KERNEL_CLANG_VERSION := prelude
+KERNEL_TOOLCHAIN := $(shell pwd)/prebuilts/clang/host/linux-x86/clang-prelude/bin
+KERNEL_SUPPORTS_LLVM_TOOLS := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):libinit_nabu
